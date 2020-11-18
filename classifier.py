@@ -36,11 +36,15 @@ def read_input(filename = "input.txt"):
 	return [pre, targets]
 
 
+def main():
+	[pre, targets] = read_input()
+	print(targets)
 
 
-[pre, targets] = read_input()
+if __name__ == '__main__':
+    main()
 
-print(targets)
+
 
 
 
