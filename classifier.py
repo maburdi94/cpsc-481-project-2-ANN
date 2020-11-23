@@ -3,16 +3,8 @@
 import re
 import sys
 import numpy as np
-
-
-
-# Sigmoid (activation function)
-def sigmoid(x):
-    return 1.0/(1.0+math.exp(-x))
-
-# Sigmoid derivative
-def d_sigmoid(x):
-    return sigmoid(x)*(1.0-sigmoid(x))
+import utils
+import math
 
 
 # Read classified set and target values from input file
@@ -38,47 +30,57 @@ def read_input(filename = "input.txt"):
 	return [pre, targets]
 
 
+
+
+
 def main():
+
+	epochs = 1
+
+	# Learning Rate
+	LR = 0.01
+
+	# Read vectors and target classes from file
 	[pre, targets] = read_input()
-	print(targets)
+
+	# NumPy print options
+	np.set_printoptions(threshold=sys.maxsize)
 
 
-<<<<<<< Updated upstream
+	# Get a vector of 4 weights initialized with random weights
+	weights = np.random.uniform(-1, 1, (4, 10))
+	print("Weights\n", weights)
+
+	# 80% of inputs is training set
+	training_set = pre[0:math.floor(.8*len(pre)),:]
+	print("Training Set\n", training_set)
+
+	# 20% is holdout set
+	holdout_set = pre[math.floor(.8*len(pre)):,:]
+	print("Holdout Set\n", holdout_set)
+
+
+
+	# Training
+	for epoch in range(epochs):
+		for sample in range(len(training_set)):
+			for node in range(weights.shape[0]):
+				print(np.sum(np.multiply(pre[sample,:], weights[node,:])))
+
+
+
+	# Test to see the ouput is correct
+	# print(np.append(pre, targets, axis=1))
+	
+
+
+
+
+
+
 if __name__ == '__main__':
     main()
 
-
-=======
-
-
-
-
-
-
-epochs = 1
-
-training_set = 0.8
-
-learning_rate = 0.05
-
-
-# for epoch in range(epochs):
-	# for sample in range(training_set):
-
-
-
-
-
-
-# Read vectors and target classes from file
-[pre, targets] = read_input()
-
-# Print entire array
-np.set_printoptions(threshold=sys.maxsize)
-
-# Test to see the ouput is correct
-print(np.append(pre, targets, axis=1))
->>>>>>> Stashed changes
 
 
 
